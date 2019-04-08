@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSocket demo</title>
+    </head>
+    <body>
+	<script src="lib/d3.v5.min.js"></script>
+	<script src="lib/c3.min.js"></script>
+	<link href="lib/c3.min.css" rel="stylesheet">
+	<h3>WGA :</h3>
+	<h3>D3js + Arduino + WebSocket + Python + Paradoxis/Windows-Sound-Manager</h3>
+	<div id="chart"></div>
+        <script>
+		
+		
+		var chart = c3.generate({
+			data: {
+				columns: [
+					['Volume', 50]
+				],
+				type: 'gauge'
+			},
+			gauge: {
+
+			},
+			color: {
+				pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+				threshold: {
+					values: [30, 60, 90, 100]
+				}
+			},
+			size: {
+				height: 180
+			}
+		});
+
+
+		var ws = new WebSocket("ws://127.0.0.1:8765/")
+		ws.onmessage = function (event) {
+			chart.load({
+				columns: [['Volume', event.data]]
+			});
+		};
+        </script>
+    </body>
+</html>
