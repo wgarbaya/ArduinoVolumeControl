@@ -2,6 +2,7 @@
 
 This POC is to control Windows Audio Volume from Arduino using ultrasonic-sensor-hc-sr04 (Proximity sensor) and stream the information (by serial on COM3) to python and then through websocket.
 The information is displayed in plain c3js chart.
+https://youtu.be/EpdCdLJ-wSI
 
 ## known Issues:
 You dont have full control au audio controller so I'm using I hack from :
